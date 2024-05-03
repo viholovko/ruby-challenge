@@ -1,0 +1,23 @@
+.pt-5
+.container
+  .pt-2.text-end
+    = link_to 'Create User', new_user_path, class: 'btn btn-primary'
+  %table.table
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} First name
+        %th{:scope => "col"} Last name
+        %th{:scope => "col"} email
+        %th{:scope => "col"}
+    %tbody
+      - @users.each_with_index do |user, index|
+        %tr
+          %th{:scope => "row"}= index + 1
+          %td= user.first_name
+          %td= user.last_name
+          %td= user.email
+          %td.text-end.pe
+            %span
+              = link_to 'Edit', edit_user_path(user), class: 'btn btn-outline-info me-3'
+              = link_to "Remove", "#", class: 'button btn btn-outline-danger', data: { reflex: "click->UserReflex#delete", id: user.id }, method: :delete
